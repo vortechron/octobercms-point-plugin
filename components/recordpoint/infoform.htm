@@ -1,0 +1,16 @@
+{% if isRegistered %}
+Thank you 👌
+{% else %}
+<form data-request="onFinish"
+data-request-update="'recordPoint::infoform': '#finish'"
+>
+
+    <input type="hidden" name="id" placeholder="IC Number" required value="{{ id }}">
+
+    <input type="text" class="mb-2" name="name" placeholder="Name" required>
+    <input type="text" class="mb-2" name="phone" placeholder="Phone" required>
+    <input type="text" class="mb-2" name="email" placeholder="Email" required>
+
+    <button type="submit">Finish</button>
+</form>
+{% endif %}

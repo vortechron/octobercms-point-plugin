@@ -1,0 +1,9 @@
+1.0.0:
+    - Initialize plugin.
+    - create_posts_table.php
+    - create_categories_table.php
+    - categories_add_nested_fields.php
+    - update_timestamp_nullable.php
+    - posts_add_metadata.php
+    - create_customers_table.php
+    - support_api.php

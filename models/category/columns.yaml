@@ -1,0 +1,13 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    name:
+        label: vortechron.point::lang.category.name
+        searchable: true
+
+    post_count:
+        label: vortechron.point::lang.category.posts
+        sortable: false

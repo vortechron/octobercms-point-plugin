@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: vortechron.point::lang.event.create_category
+form: ~/plugins/vortechron/point/models/category/fields.yaml
+modelClass: Vortechron\Point\Models\Category
+defaultRedirect: vortechron/point/categories
+
+create:
+    redirect: vortechron/point/categories/update/:id
+    redirectClose: vortechron/point/categories
+
+update:
+    redirect: vortechron/point/categories
+    redirectClose: vortechron/point/categories

@@ -1,0 +1,36 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    title:
+        label: vortechron.point::lang.post.title
+        searchable: true
+
+    # author:
+    #   label: Author
+    #   relation: user
+    #   select: login
+    #   searchable: true
+
+    categories:
+        label: vortechron.point::lang.post.categories
+        relation: categories
+        select: name
+        searchable: true
+        sortable: false
+
+    created_at:
+        label: vortechron.point::lang.post.created
+        type: date
+        invisible: true
+
+    updated_at:
+        label: vortechron.point::lang.post.updated
+        type: date
+        invisible: true
+
+    published_at:
+        label: vortechron.point::lang.post.published
+        type: date

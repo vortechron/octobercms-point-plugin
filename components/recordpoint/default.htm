@@ -1,0 +1,10 @@
+<form id="continue" data-request="{{ __SELF__ }}::onContinue"
+    data-request-success="$('#continue').hide(); $('#finish').show()"
+    data-request-update="'recordPoint::infoform': '#finish'"
+>
+    <input type="text" name="id" placeholder="IC Number" required value="{{ id }}">
+
+    <button type="submit" class="button mt-3">Continue</button>
+</form>
+
+<div id="finish"></div>

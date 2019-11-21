@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: vortechron.point::lang.event.create_post
+form: ~/plugins/vortechron/point/models/post/fields.yaml
+modelClass: Vortechron\Point\Models\Post
+defaultRedirect: vortechron/point/posts
+
+create:
+    redirect: vortechron/point/posts/update/:id
+    redirectClose: vortechron/point/posts
+
+update:
+    redirect: vortechron/point/posts
+    redirectClose: vortechron/point/posts

@@ -1,0 +1,76 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    title:
+        label: vortechron.point::lang.post.title
+        span: left
+        placeholder: vortechron.point::lang.post.title_placeholder
+
+    slug:
+        label: vortechron.point::lang.post.slug
+        span: right
+        placeholder: vortechron.point::lang.post.slug_placeholder
+        preset:
+            field: title
+            type: slug
+
+    toolbar:
+        type: partial
+        path: post_toolbar
+        cssClass: collapse-visible
+
+secondaryTabs:
+    stretch: true
+    fields:
+        content:
+            tab: vortechron.point::lang.post.tab_edit
+            type: richeditor
+
+        categories:
+            tab: vortechron.point::lang.post.tab_categories
+            type: relation
+            commentAbove: vortechron.point::lang.post.categories_comment
+            placeholder: vortechron.point::lang.post.categories_placeholder
+
+        published:
+            tab: vortechron.point::lang.post.tab_manage
+            label: vortechron.point::lang.post.published
+            span: left
+            type: checkbox
+
+        user:
+            tab: vortechron.point::lang.post.tab_manage
+            label: vortechron.point::lang.post.published_by
+            span: right
+            type: relation
+            nameFrom: login
+            emptyOption: vortechron.point::lang.post.current_user
+
+        published_at:
+            tab: vortechron.point::lang.post.tab_manage
+            label: vortechron.point::lang.post.published_on
+            span: left
+            cssClass: checkbox-align
+            type: datepicker
+            mode: datetime
+            trigger:
+                action: enable
+                field: published
+                condition: checked
+
+        excerpt:
+            tab: vortechron.point::lang.post.tab_manage
+            label: vortechron.point::lang.post.excerpt
+            type: textarea
+            size: small
+
+        featured_images:
+            tab: vortechron.point::lang.post.tab_manage
+            label: vortechron.point::lang.post.featured_images
+            type: fileupload
+            mode: image
+            imageWidth: 200
+            imageHeight: 200

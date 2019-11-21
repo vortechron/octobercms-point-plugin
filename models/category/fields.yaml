@@ -1,0 +1,23 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: vortechron.point::lang.category.name
+        placeholder: vortechron.point::lang.category.name_placeholder
+        span: left
+
+    slug:
+        label: vortechron.point::lang.category.slug
+        span: right
+        placeholder: vortechron.point::lang.category.slug_placeholder
+        preset: name
+
+    description:
+        label: 'vortechron.point::lang.category.description'
+        size: large
+        oc.commentPosition: ''
+        span: full
+        type: textarea
