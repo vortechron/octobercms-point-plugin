@@ -1,0 +1,32 @@
+<a data-toggle="modal" href="#winner" href="<?= Backend::url('vortechron/point/customers/create') ?>" class="btn btn-outline-default">
+    Pick Winner
+</a>
+<div class="control-popup modal fade" id="winner">
+    <div class="modal-dialog">
+        <form data-request="<?= $this->getEventHandler('onPick') ?>"
+            data-request-update="results: '#results'"
+            class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Pick winner</h4>
+            </div>
+            <div class="modal-body">
+                <h5>Select 'None' to pick winner in general</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <select name="post" class="form-control custom-select w-350">
+                            <option style="width: 100%;" selected="selected" value="NULL">None</option>
+                            <?php foreach($posts as $post) : ?>
+                            <option value="<?= $post->id ?>"><?= $post->title ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                </div>
+                <div id="results"></div>
+            </div>
+            <div class="modal-footer">
+                <button data-attach-loading class="btn btn-primary">Pick</button>
+            </div>
+        </form>
+    </div>
+</div>

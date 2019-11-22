@@ -1,0 +1,26 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+    ic:
+        label: IC Number
+    name:
+        label: vortechron.point::lang.category.name
+        placeholder: vortechron.point::lang.category.name_placeholder
+        span: left
+    email:
+        label: Email
+        span: right
+        placeholder: johndoe@gmail.com
+    phone:
+        label: Phone
+        span: left
+    points:
+        label: Point Entries
+        span: full
+        context:
+            - update
+            - preview
+        type: partial
+        path: ~/plugins/vortechron/point/controllers/customers/_points.htm

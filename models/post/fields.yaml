@@ -60,6 +60,17 @@ secondaryTabs:
                 action: enable
                 field: published
                 condition: checked
+        expired_at:
+            tab: vortechron.point::lang.post.tab_manage
+            label: Expired At
+            span: left
+            cssClass: checkbox-align
+            type: datepicker
+            mode: datetime
+            trigger:
+                action: enable
+                field: published
+                condition: checked
 
         excerpt:
             tab: vortechron.point::lang.post.tab_manage

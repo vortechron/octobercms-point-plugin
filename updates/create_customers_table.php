@@ -11,19 +11,19 @@ class CreateCustomersTable extends Migration
         Schema::create('vortechron_point_customers', function($table)
         {
             $table->engine = 'InnoDB';
-            $table->string('id')->primary();
+            $table->increments('id');
             $table->string('name')->nullable();
             $table->string('phone')->index();
             $table->string('email')->index();
+            $table->string('ic')->index();
             $table->timestamps();
         });
         Schema::create('vortechron_point_customer_points', function($table)
         {
             $table->engine = 'InnoDB';
-            $table->increment('id');
+            $table->increments('id');
             $table->unsignedInteger('customer_id');
-            $table->string('type')->nullable();
-            $table->string('type_id')->index();
+            $table->unsignedInteger('post_id');
             $table->integer('point')->default(1);
             $table->timestamps();
         });

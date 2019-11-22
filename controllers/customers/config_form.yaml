@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: Create Customer
+form: ~/plugins/vortechron/point/models/customer/fields.yaml
+modelClass: Vortechron\Point\Models\Customer
+defaultRedirect: vortechron/point/customers
+
+create:
+    redirect: vortechron/point/customers/update/:id
+    redirectClose: vortechron/point/customers
+
+update:
+    redirect: vortechron/point/customers
+    redirectClose: vortechron/point/customers

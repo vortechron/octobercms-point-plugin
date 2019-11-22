@@ -1,0 +1,15 @@
+points:
+    label: 'Points'
+    # manage:
+    #     list: $/vortechron/point/models/customerpoint/columns.yaml
+    #     form: $/vortechron/point/models/customerpoint/fields.yaml
+    #     showSearch: true
+    #     showSorting: true
+    #     recordsPerPage: 10
+    view:
+        list: $/vortechron/point/models/customerpoint/columns.yaml
+        recordUrl: vortechron/point/customerpoints/update/:id
+        toolbarButtons: 'create|delete'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10

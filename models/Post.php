@@ -97,14 +97,31 @@ class Post extends Model
 
     public function getRecordUrlAttribute()
     {
-        $type = 'event';
-        $id = $this->id;
+        $id = $this->slug;
 
-        return Url::to("record-point/{$type}/{$id}");
+        return Url::to("record-point/{$id}");
     }
 
     public function beforeSave()
     {
         $this->type = 'event';
+    }
+
+    public function scopeIsPublished($query)
+    {
+        return $query
+            ->whereNotNull('published')
+            ->where('published', true)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<', Carbon::now())
+            ->where(function ($query) {
+                $query->whereNull('expired_at')->orWhere('expired_at', '>=', Carbon::now());
+            })
+        ;
+    }
+
+    public function getIsPublishedAttribute()
+    {
+        return static::where('id', $this->id)->isPublished()->first() ? true : false;
     }
 }

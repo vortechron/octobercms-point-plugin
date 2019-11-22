@@ -34,3 +34,6 @@ columns:
     published_at:
         label: vortechron.point::lang.post.published
         type: date
+    expired_at:
+        label: Expired At
+        type: date

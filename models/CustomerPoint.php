@@ -11,13 +11,15 @@ class CustomerPoint extends Model
 
     public $table = 'vortechron_point_customer_points';
 
+    public $guarded = [];
+
+    public $belongsTo = [
+        'post' => [Post::class]
+    ];
+    
     /*
      * Validation
      */
     public $rules = [
-    ];
-
-    public $hasMany = [
-        'points' => [],
     ];
 }

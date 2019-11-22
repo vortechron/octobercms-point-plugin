@@ -22,4 +22,9 @@ class Customer extends Model
     public $hasMany = [
         'points' => [CustomerPoint::class],
     ];
+
+    public function getTotalPointsAttribute()
+    {
+        return $this->points->sum('point');
+    }
 }

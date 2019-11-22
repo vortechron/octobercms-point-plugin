@@ -1,0 +1,21 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    ic:
+        label: IC Number
+        searchable: true
+    name:
+        label: vortechron.point::lang.category.name
+        searchable: true
+    phone:
+        label: phone
+        sortable: false
+    email:
+        label: email
+        sortable: false
+    total_points:
+        label: Total Points
+        sortable: false

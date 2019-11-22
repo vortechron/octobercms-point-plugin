@@ -6,11 +6,14 @@ use Controller;
 use Backend\Controllers\Users;
 use System\Classes\PluginBase;
 use Vortechron\Point\Models\Post;
+use Illuminate\Support\Facades\Route;
 use Vortechron\Point\Models\Category;
 use Vortechron\Point\Classes\TagProcessor;
 
 class Plugin extends PluginBase
 {
+    public $require = ['Mohsin.Rest'];
+
     public function boot()
     {
         Users::extendFormFields(function ($form, $model, $context) {
@@ -102,7 +105,24 @@ class Plugin extends PluginBase
                         'permissions' => ['vortechron.point.access_categories']
                     ]
                 ]
-            ]
+            ],
+            'customer' => [
+                'label'       => 'Customers',
+                'url'         => Backend::url('vortechron/point/customers'),
+                'icon'        => 'icon-hand-peace-o',
+                'permissions' => ['vortechron.point.*'],
+                'order'       => 300,
+            ],
+        ];
+    }
+
+    public function registerNodes()
+    {
+        return [
+            'record-point/{slug}' => [
+                'controller' => 'Vortechron\Point\Http\RecordPointController@record',
+                'action'     => 'store'
+            ],
         ];
     }
 }

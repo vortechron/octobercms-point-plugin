@@ -1,0 +1,5 @@
+<?php if (! $user) : ?>
+<h5>No winner for now.</h5>
+<?php else : ?>
+<a style="font-size: 12px;" href="<?= Backend::url('vortechron/point/customers/update/'. $user->id) ?>"><h5>🥳<?= $user->name ?>🥳</h5></a>
+<?php endif ?>

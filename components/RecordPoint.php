@@ -3,8 +3,9 @@
 use Cms\Classes\ComponentBase;
 use Vortechron\Point\Models\Post;
 use Illuminate\Support\Facades\App;
-use October\Rain\Exception\ApplicationException;
 use Vortechron\Point\Models\Customer;
+use October\Rain\Exception\ValidationException;
+use October\Rain\Exception\ApplicationException;
 
 class RecordPoint extends ComponentBase
 {
@@ -20,52 +21,67 @@ class RecordPoint extends ComponentBase
 
     public function onRun()
     {
-        $this->model = Post::where('type', $this->param('type'))->where('id', $this->param('id'))->first();
+        $this->model = $this->getModel();
 
         if (! $this->model)
             return \Response::make($this->controller->run('404'), 404);
 
-        if ($this->model->is_expired)
+        if (! $this->model->is_published)
             return \Response::make($this->controller->run('404'), 404);
+    }
+
+    public function getModel()
+    {
+        return Post::where('slug', $this->param('slug'))->first();
     }
 
     public function onContinue()
     {
-        $this->page['id'] = $id = post('id');
-        $type = $this->param('type');
-        $typeId = $this->param('id');
+        $this->page['ic'] = $ic = post('ic');
 
-        $customer = Customer::find($id);
+        $customer = Customer::whereIc($ic)->first();
 
-        if ($customer) $this->recordPoint($customer, $type, $typeId);
+        if ($customer) $this->recordPoint($customer, $this->getModel());
 
         $this->page['isRegistered'] = $customer ? true : false;
     }
 
+    public function createCustomer()
+    {
+        $validator = validator(request()->all(), [
+            'name' => 'required',
+            'phone' => 'required|unique:vortechron_point_customers,phone',
+            'ic' => 'required|unique:vortechron_point_customers,ic',
+            'email' => 'required|unique:vortechron_point_customers,email',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        return Customer::create(request()->all());
+    }
+
     public function onFinish()
     {
-        $type = $this->param('type');
-        $typeId = $this->param('id');
-        $customer = Customer::create(request()->all());
+        $customer = $this->createCustomer();
 
-        $this->recordPoint($customer, $type, $typeId);
+        $this->recordPoint($customer, $this->getModel());
 
         $this->page['isRegistered'] = true;
     }
 
-    public function recordPoint($customer, $type, $id)
+    public function recordPoint($customer, Post $post)
     {
         $point = $customer->points()
-                    ->where('type', $type)
-                    ->where('type_id', $id)
+                    ->where('post_id', $post->id)
                     ->first();
 
         if ($point) return;
 
         $customer->points()->create([
-            'type' => $type,
-            'type_id' => $id,
-            'point' => $point->point
+            'post_id' => $post->id,
+            'point' => $post->point
         ]);
     }
 
